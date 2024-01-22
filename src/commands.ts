@@ -7,7 +7,6 @@ export const ping: Command = {
   execute: async (interaction) => {
     await interaction.reply("pong!");
     console.log("/ping called");
-
   }
 };
 
@@ -19,7 +18,6 @@ export const start: Command = {
     await $`sudo systemctl start ${process.env.SYSTEMD_NAME}`;
     await interaction.editReply("起動しました!");
     console.log("systemd started");
-
   }
 };
 
