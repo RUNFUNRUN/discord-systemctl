@@ -50,7 +50,10 @@ export const status: Command = {
   execute: async (interaction) => {
     await interaction.reply("状態を確認してます...");
     console.log("/status called");
-    const result = await $`sudo systemctl status ${process.env.SYSTEMD_NAME}`.text();
+    let result = await $`sudo systemctl status ${process.env.SYSTEMD_NAME}`.text();
+    if (result.length > 1990) {
+      result = result.slice(0, 1990);
+    }
     await interaction.editReply(`\`\`\`\n${result}\n\`\`\``);
     console.log("systemd status");
   }
