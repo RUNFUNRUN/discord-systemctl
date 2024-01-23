@@ -15,7 +15,7 @@ export const start: Command = {
   execute: async (interaction) => {
     await interaction.reply("起動してます...");
     console.log("/start called");
-    await $`sudo systemctl start ${process.env.SYSTEMD_NAME}`;
+    await $`sudo systemctl start ${process.env.SERVICE_NAME}`;
     await interaction.editReply("起動しました!");
     console.log("systemd started");
   }
@@ -26,7 +26,7 @@ export const stop: Command = {
   execute: async (interaction) => {
     await interaction.reply("停止してます...");
     console.log("/stop called");
-    await $`sudo systemctl stop ${process.env.SYSTEMD_NAME}`;
+    await $`sudo systemctl stop ${process.env.SERVICE_NAME}`;
     await interaction.editReply("停止しました!");
     console.log("systemd stopped");
   }
@@ -37,7 +37,7 @@ export const restart: Command = {
   execute: async (interaction) => {
     await interaction.reply("再起動してます...");
     console.log("/restart called");
-    await $`sudo systemctl restart ${process.env.SYSTEMD_NAME}`;
+    await $`sudo systemctl restart ${process.env.SERVICE_NAME}`;
     await interaction.editReply("再起動しました!");
     console.log("systemd restarted");
   }
@@ -48,7 +48,7 @@ export const status: Command = {
   execute: async (interaction) => {
     await interaction.reply("状態を確認してます...");
     console.log("/status called");
-    let result = await $`sudo systemctl status ${process.env.SYSTEMD_NAME}`.text();
+    let result = await $`sudo systemctl status ${process.env.SERVICE_NAME}`.text();
     if (result.length > 1990) {
       result = result.slice(0, 1990);
     }
